@@ -2,8 +2,8 @@ import pygame
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
+    print("CircleShape constru called")
     def __init__(self, x, y, radius):
-        print("CircleShape Constructor called")
         if hasattr(self, "containers"):
             super().__init__(self.containers)
         else:
@@ -14,10 +14,10 @@ class CircleShape(pygame.sprite.Sprite):
         self.radius = radius
 
     def draw(self, screen):
-        pass
+        pygame.draw.circle(screen, center = self.position, radius = self.radius, width = 2, color='white')
 
-    def update(self, dt):
-        pass
+    def update(self,dt):
+        self.position += self.velocity * dt
 
     def is_colliding(self,circle):
         center1 = self.position
