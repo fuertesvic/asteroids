@@ -4,6 +4,7 @@ from asteroid import Asteroid
 from constants import * 
 from player import Player
 from shot import Shot
+
 def main():
     
     print("Starting asteroids!")
@@ -36,12 +37,19 @@ def main():
         
         updatable.update(dt)
         
-        for object in asteroids:
-            if player.is_colliding(object):
+        for asteroid in asteroids:
+            
+            if player.is_colliding(asteroid):
                 print("GameOver")
                 return
+        for asteroid in asteroids:
+            for bullet in shots:
+                if asteroid.is_colliding(bullet):
+                    asteroid.split()
+                    bullet.kill()
         
-        
+    
+
         for object in drawable:
             object.draw(screen)
          
