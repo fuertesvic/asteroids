@@ -3,7 +3,7 @@ import pygame
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
     def __init__(self, x, y, radius):
-        
+        print("CircleShape Constructor called")
         if hasattr(self, "containers"):
             super().__init__(self.containers)
         else:
