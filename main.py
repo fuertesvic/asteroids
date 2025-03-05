@@ -6,8 +6,6 @@ from player import Player
 from shot import Shot
 
 def main():
-    
-    print("Starting asteroids!")
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Sets up the GUI window
     clock = pygame.time.Clock()                                     # Sets up the clock for the game loop    
@@ -30,9 +28,8 @@ def main():
     while True:
         for event in pygame.event.get():    # Make sure the 'x' works to quit the game
             if event.type == pygame.QUIT:
-                print("Exiting asteroids")
+                
                 return
-        
         screen.fill(color='black')
         
         updatable.update(dt)
@@ -40,15 +37,13 @@ def main():
         for asteroid in asteroids:
             
             if player.is_colliding(asteroid):
-                print("GameOver")
+                
                 return
         for asteroid in asteroids:
             for bullet in shots:
                 if asteroid.is_colliding(bullet):
                     asteroid.split()
-                    bullet.kill()
-        
-    
+                    bullet.kill() 
 
         for object in drawable:
             object.draw(screen)
