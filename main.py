@@ -19,7 +19,7 @@ def main():
 
     Player.containers        = (updatable, drawable)
     Asteroid.containers     = (updatable, drawable, asteroids)
-    AsteroidField.containers = (updatable)
+    AsteroidField.containers = (updatable, )
     
     player = Player(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)     # Create a "player" instance
     asteroid_field = AsteroidField() 
@@ -33,8 +33,14 @@ def main():
         screen.fill(color='black')
         
         updatable.update(dt)
+        
+        for object in asteroids:
+            if player.is_colliding(object):
+                print("GameOver")
+                return
+        
+
         for object in drawable:
-            print(f"Drawing {object}")
             object.draw(screen)
          
         elapsed = clock.tick(60)             # Pause for 1/60th of a second and get how many time has passed
